@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese,english]{babel}
+\usepackage{graphicx}
+\graphicspath{{images/}{../images/}}
+\usepackage{subfiles}
+
+\title{Thiết kế và triển khai hệ thống phát hiện xâm nhập dựa trên kĩ thuật máy học}
+\author{
+    Nguyễn Đức Thông
+    \and
+    Phạm Ngọc Hiếu Minh
+    \and
+    Trần Thanh Tín
+}
+\renewcommand{\and}{\\}
+
+\begin{document}
+    \selectlanguage{vietnamese}
+    \pagenumbering{gobble}
+    \maketitle
+    \centering
+    \includegraphics[width=4cm]{logo}
+    \newpage
+    \tableofcontents
+    \newpage
+
+    \begin{flushleft}
+        \pagenumbering{arabic}
+        \section{Giới thiệu}
+        \subsection{Đề tài}
+        \subsection{Đặt vấn đề}
+        \subsection{Mục tiêu}
+        \newpage
+        \section{Lí thuyết IDS và Data Mining}
+        \subsection{An toàn thông tin}
+        \subsection{Hệ thống phát hiện xâm nhập}
+        \subsubsection{Giới thiệu}
+        \subsubsection{HIDS}
+        \subsubsection{NIDS}
+        \subsubsection{Giới hạn}
+        \subsection{Khai thác dữ liệu}
+        \subsubsection{Tổng quan}
+        \subsubsection{Máy học}
+        \newpage
+        \section{Công nghệ tiếp cận}
+        \subsection{Snort}
+        \subsubsection{Giới thiệu}
+        \subsubsection{Kiến trúc}
+        \subsubsection{Cấu hình}
+        \subsection{NSL-KDD}
+        \subsubsection{Giới thiệu}
+        \subsubsection{Đặc tính}
+        \subsection{Scikit}
+        \subsubsection{Giới thiệu}
+        \newpage
+        \section{Thử nghiệm và kết quả}
+        \subsection{Thiết lập dữ liệu và môi trường thử nghiệm}
+        \subsection{Kết quả và nhận xét}
+        \newpage
+        \section{Kết luận}
+        \subsection{Nhận định}
+        \subsection{Hướng phát triển}
+    \end{flushleft}
+    \newpage
+    \bibliography{ref} 
+    \bibliographystyle{ieeetr}
+\end{document}
