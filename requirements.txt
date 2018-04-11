@@ -2,3 +2,9 @@ numpy
 scipy
 scikit-learn
 pandas
+matplotlib
+ipython
+jupyter
+pandas
+sympy
+nose
