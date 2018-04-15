@@ -336,3 +336,4 @@ TSWLatexianTemp*
 *.sta
 
 .vscode
+.pytest_cache
