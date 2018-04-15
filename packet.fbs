@@ -1,0 +1,7 @@
+namespace kmeans;
+
+table Packet {
+    duration:int;
+}
+
+root_type Packet;

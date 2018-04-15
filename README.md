@@ -17,11 +17,12 @@ Build KMeans cluster and test accuracy
 ```bash
 python main.py
 ```
-
+./flatc --python packet.fbs
 #### Install LaTeX to build docs
 ```bash
 sudo apt install texlive-full
 ```
 
 Datasets from: https://github.com/defcom17/NSL_KDD
+
 Code based on: https://github.com/AnomalyIDSBenchmark/KMeansNSL-KDD

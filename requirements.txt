@@ -8,3 +8,5 @@ jupyter
 pandas
 sympy
 nose
+flask
+flatbuffers
