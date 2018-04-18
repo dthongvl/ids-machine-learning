@@ -73,14 +73,13 @@ class KMeansNSL(DefaultNSL):
 
     def predict(self, packet):
         data = pd.DataFrame([packet], columns=COL_NAMES)
-        # Shuffle data
+
         data = data.sample(frac=1).reset_index(drop=True)
         NOM_IND = [1, 2, 3]
         BIN_IND = [6, 11, 13, 14, 20, 21]
-        # Need to find the numerical columns for normalization
+
         NUM_IND = list(set(range(40)).difference(NOM_IND).difference(BIN_IND))
 
-        # Scale all numerical data to [0-1]
         data.iloc[:, NUM_IND] = minmax_scale(data.iloc[:, NUM_IND])
         del data['labels']
         data = pd.get_dummies(data)
@@ -89,6 +88,6 @@ class KMeansNSL(DefaultNSL):
         map_data = map_data.append(data)
         data = map_data.fillna(0)
 
-        predict = self.clf.predict(data)
+        predict = self.clf.predict(data[self.cols])
         predict = [self.clusters[x] for x in predict]
         return predict
