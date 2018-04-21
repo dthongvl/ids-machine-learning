@@ -10,3 +10,4 @@ sympy
 nose
 flask
 flatbuffers
+pytest

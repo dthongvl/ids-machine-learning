@@ -90,4 +90,4 @@ class KMeansNSL(DefaultNSL):
 
         predict = self.clf.predict(data[self.cols])
         predict = [self.clusters[x] for x in predict]
-        return predict
+        return predict[0]
