@@ -15,7 +15,7 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict_packet():
-    raw_data = bytearray(request.form.get('data'), 'latin-1')
+    raw_data = request.get_data()
     data = Packet.GetRootAsPacket(raw_data, 0)
     packet = {
         "duration": data.Duration(),

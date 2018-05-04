@@ -17,7 +17,7 @@ COL_NAMES = ["duration", "protocol_type", "service", "flag", "src_bytes",
 
 def test_predict():
     df = pd.read_csv('datasets/KDDTest+.csv', names=COL_NAMES,
-                     index_col=False, nrows=200)
+                     index_col=False, nrows=1)
     correct = 0
     for index, row in df.iterrows():
         builder = flatbuffers.Builder(1024)
@@ -73,9 +73,8 @@ def test_predict():
         orc = PacketEnd(builder)
         builder.Finish(orc)
         buf = builder.Output()
-        data = buf.decode('latin-1')
 
-        r = requests.post('http://localhost:5000/predict', data={'data': data})
+        r = requests.post('http://localhost:5000/predict', data=buf, headers={'Content-Type': 'application/octet-stream'})
         if r.text.strip() == 'normal' and row['labels'].strip() == 'normal':
             correct = correct + 1
         if r.text.strip() == 'anomaly' and row['labels'].strip() != 'normal':
@@ -85,6 +84,7 @@ def test_predict():
 
 
 # if __name__ == '__main__':
-#     for col_name in COL_NAMES:
-#         col_name_split = [x.capitalize() for x in col_name.split('_')]
-#         print 'PacketAdd' + ''.join(col_name_split) + "(builder, row['" + col_name + "'])"
+    # for col_name in COL_NAMES:
+        # col_name_split = [x.capitalize() for x in col_name.split('_')]
+        # print 'PacketAdd' + ''.join(col_name_split) + "(builder, row['" + col_name + "'])"
+        # print 'packetBuilder.add_' + col_name + '(0);'

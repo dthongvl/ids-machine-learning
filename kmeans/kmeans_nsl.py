@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import minmax_scale
-import matplotlib.pyplot as plt
 from default_clf import DefaultNSL, COL_NAMES, ATTACKS
 
 
