@@ -1,69 +1,64 @@
-\documentclass{article}
-\usepackage{geometry}
-\geometry{
-    a4paper,
-    total={170mm,257mm},
-    left=20mm,
-    top=20mm,
-}
+\documentclass[12pt,twoside]{report}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese,english]{babel}
+\usepackage{placeins}
+\usepackage{listings}
 \usepackage{graphicx}
 \graphicspath{{images/}{../images/}}
-\usepackage{subfiles}
 
-\title{Thiết kế và triển khai hệ thống phát hiện xâm nhập dựa trên kĩ thuật máy học}
+\title{
+    {Thiết kế và triển khai hệ thống phát hiện xâm nhập dựa trên kĩ thuật máy học}\\
+    {\includegraphics[width=4cm]{logo}}
+}
 \author{
     Nguyễn Đức Thông
-    \and
+    \\
     Phạm Ngọc Hiếu Minh
-    \and
+    \\
     Trần Thanh Tín
 }
-\renewcommand{\and}{\\}
 
 \begin{document}
-    \selectlanguage{vietnamese}
-    \pagenumbering{gobble}
-    \maketitle
-    \centering
-    \includegraphics[width=4cm]{logo}
-    \newpage
-    \tableofcontents
-    \newpage
+\selectlanguage{vietnamese}
+\pagenumbering{gobble}
+\maketitle
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
 
-    \begin{flushleft}
-        \pagenumbering{arabic}
-        \section{Giới thiệu}
-        \subfile{sections/introduce}
-        \newpage
-        \section{Lí thuyết IDS và Machine Learning}
-        \subsection{An toàn thông tin}
-        \subfile{sections/security}
-        \subsection{Hệ thống phát hiện xâm nhập}
-        \subfile{sections/ids}
-        \subsection{Khai thác dữ liệu}
-        \subfile{sections/data-mining}
-        \subsection{Máy học}
-        \subfile{sections/machine-learning}
-        \newpage
-        \section{Công nghệ tiếp cận}
-        \subsection{Snort 3}
-        \subfile{sections/snort}
-        \subsection{NSL-KDD}
-        \subfile{sections/nsl-kdd}
-        \subsection{Thuật toán KMeans}
-        \subfile{sections/kmeans}
-        \subsection{Scikit}
-        \subfile{sections/scikit}
-        \newpage
-        \section{Thử nghiệm và kết quả}
-        \subfile{sections/experiment}
-        \newpage
-        \section{Kết luận}
-        \subfile{sections/conclusion}
-    \end{flushleft}
+    \pagenumbering{arabic}
+    \chapter{Giới thiệu}
+    \input{sections/introduce}
     \newpage
-    \bibliography{ref} 
-    \bibliographystyle{ieeetr}
+    \chapter{Lí thuyết IDS và Machine Learning}
+    \section{An toàn thông tin}
+    \input{sections/security}
+    \section{Hệ thống phát hiện xâm nhập}
+    \input{sections/ids}
+    \section{Khai thác dữ liệu}
+    \input{sections/data-mining}
+    \section{Máy học}
+    \input{sections/machine-learning}
+    \newpage
+    \chapter{Công nghệ tiếp cận}
+    \section{Snort 3}
+    \input{sections/snort}
+    \section{NSL-KDD}
+    \input{sections/nsl-kdd}
+    \section{Thuật toán KMeans}
+    \input{sections/kmeans}
+    \section{Scikit}
+    \input{sections/scikit}
+    \newpage
+    \chapter{Thử nghiệm và kết quả}
+    \input{sections/experiment}
+    \newpage
+    \chapter{Kết luận}
+    \input{sections/conclusion}
+
+\newpage
+\bibliography{ref}
+\bibliographystyle{ieeetr}
 \end{document}
