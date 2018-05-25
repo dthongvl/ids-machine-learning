@@ -1,0 +1,14 @@
+FlatBuffers là một thư viện serialization đa nền tảng hiệu quả cho C++, C\#, C, Go, Java, JavaScript, TypeScript, PHP và Python. 
+Ban đầu nó được tạo ra tại Google để phát triển trò chơi và các ứng dụng quan trọng khác về hiệu suất.
+\subsection{Tại sao sử dụng FlatBuffers?}
+\begin{itemize}
+\item \textbf{Truy cập vào dữ liệu được tuần tự hóa mà không cần phân tích cú pháp / giải nén} - Những gì đặt FlatBuffers ngoài là nó đại diện cho dữ liệu phân cấp trong một bộ đệm nhị phân phẳng theo cách mà nó vẫn có thể được truy cập trực tiếp mà không cần phân tích cú pháp / giải nén, trong khi vẫn hỗ trợ tiến hóa cấu trúc dữ liệu (chuyển tiếp / khả năng tương thích ngược).
+\item \textbf{Tốc độ và bộ nhớ hiệu quả} - Bộ nhớ duy nhất cần để truy cập dữ liệu của bạn là bộ đệm. Nó yêu cầu 0 phân bổ bổ sung (bằng C ++, các ngôn ngữ khác có thể thay đổi). FlatBuffers cũng rất thích hợp để sử dụng với mmap (hoặc streaming), chỉ yêu cầu một phần của bộ đệm có trong bộ nhớ. Truy cập gần với tốc độ truy cập cấu trúc thô chỉ với một thêm một hướng (một loại vtable) để cho phép phát triển định dạng và các trường tùy chọn. Đó là nhằm vào các dự án mà chi tiêu thời gian và không gian (phân bổ bộ nhớ nhiều) để có thể truy cập hoặc xây dựng dữ liệu tuần tự là không mong muốn, chẳng hạn như trong trò chơi hoặc bất kỳ ứng dụng nhạy cảm hiệu suất nào khác.
+\item \textbf{Linh hoạt} - Các trường tùy chọn có nghĩa là bạn không chỉ có khả năng tương thích tốt và tương thích ngược (ngày càng quan trọng đối với các trò chơi tồn tại lâu dài: không phải cập nhật tất cả dữ liệu với mỗi phiên bản mới!). Nó cũng có nghĩa là bạn có nhiều lựa chọn trong dữ liệu nào bạn viết và dữ liệu nào bạn không sử dụng và cách bạn thiết kế cấu trúc dữ liệu.
+\item \textbf{Lượng mã nhỏ} - Một lượng nhỏ mã được tạo ra và chỉ một tiêu đề nhỏ duy nhất là sự phụ thuộc tối thiểu, rất dễ tích hợp.
+\item \textbf{Kiểu dữ liệu cứng} - Lỗi xảy ra tại thời gian biên dịch thay vì phải viết kiểm tra thời gian chạy lặp đi lặp lại và dễ bị lỗi. Mã có thể được sinh tự động.
+\item \textbf{Sử dụng thuận tiện} - Mã C++ được tạo cho phép truy cập và xây dựng mã. Sau đó, có chức năng tùy chọn để phân tích các lược đồ và các biểu diễn văn bản giống JSON khi chạy hiệu quả nếu cần (bộ nhớ nhanh hơn và hiệu quả hơn các trình phân tích cú pháp JSON khác).
+\newline 
+Mã Java và Go hỗ trợ tái sử dụng đối tượng. C\# có các trình truy cập dựa trên cấu trúc hiệu quả.
+\item \textbf{Đa nền tảng và không có phụ thuộc} - mã C ++ sẽ hoạt động với bất kỳ gcc / clang và VS2010 gần đây nào. Đi kèm với các tệp xây dựng cho các thử nghiệm và mẫu (tệp .mk Android và cmake cho tất cả các nền tảng khác).
+\end{itemize}
