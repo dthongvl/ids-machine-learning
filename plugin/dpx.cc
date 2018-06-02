@@ -22,6 +22,7 @@
 #include "protocols/tcp.h"
 #include "protocols/udp.h"
 #include "protocols/icmp4.h"
+#include "detection/detection_engine.h"
 #include "events/event_queue.h"
 #include "framework/inspector.h"
 #include "framework/module.h"
@@ -246,7 +247,10 @@ void Dpx::eval(Packet *packet) {
         FeatureExtractor::ConversationFeatures *cf = stats_engine->calculate_features(conv);
         conv = nullptr;        // Should not be used anymore, object will commit suicide
 
-        std::cout << predict(cf) << std::endl;
+        std::string result = predict(cf);
+        if (result == "abnormal") {
+            DetectionEngine::queue_event(DPX_GID, DPX_SID);
+        }
         delete cf;
     }
 }
@@ -264,7 +268,7 @@ static const Parameter dpx_params[] =
 
 static const RuleMap dpx_rules[] =
         {
-                {DPX_SID, "too much data sent to port"},
+                {DPX_SID, "abnormal packet found!"},
                 {0, nullptr}};
 
 class DpxModule : public Module {
