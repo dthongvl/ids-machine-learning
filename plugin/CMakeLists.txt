@@ -12,34 +12,40 @@ endif ( APPLE )
 include ( FindPkgConfig )
 pkg_search_module ( SNORT3 REQUIRED snort>=3 )
 
+file(GLOB SOURCES
+        "extractor/*.h"
+        "extractor/*.cpp"
+        )
+
 add_library (
-    dpx MODULE
-    dpx.cc
+        dpx MODULE
+        dpx.cc
+        ${SOURCES}
 )
 
 target_link_libraries(dpx -lcurl)
 
 if ( APPLE )
     set_target_properties (
-        dpx
-        PROPERTIES
+            dpx
+            PROPERTIES
             LINK_FLAGS "-undefined dynamic_lookup"
     )
 endif ( APPLE )
 
 set_target_properties (
-    dpx
-    PROPERTIES
+        dpx
+        PROPERTIES
         PREFIX ""
 )
 
 target_include_directories (
-    dpx PUBLIC
-    ${SNORT3_INCLUDE_DIRS}
+        dpx PUBLIC
+        ${SNORT3_INCLUDE_DIRS}
 )
 
 install (
-    TARGETS dpx
-    LIBRARY
+        TARGETS dpx
+        LIBRARY
         DESTINATION "${CMAKE_INSTALL_LIBDIR}/${CMAKE_PROJECT_NAME}/inspectors"
 )
