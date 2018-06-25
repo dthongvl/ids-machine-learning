@@ -248,7 +248,7 @@ void Dpx::eval(Packet *packet) {
         conv = nullptr;        // Should not be used anymore, object will commit suicide
 
         std::string result = predict(cf);
-        if (result == "abnormal") {
+        if (result != "normal") {
             DetectionEngine::queue_event(DPX_GID, DPX_SID);
         }
         delete cf;

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  predict-server:
+    image: predict-server
+    ports:
+      - "5000:5000"
+  snort:
+    image: snort

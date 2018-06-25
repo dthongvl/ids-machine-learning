@@ -1,16 +1,35 @@
 from kmeans.kmeans_nsl import KMeansNSL
 from kmeans.packet import Packet
-from flask import Flask
+from flask import Flask, render_template
 import flatbuffers
 from flask import request
+from flask_sockets import Sockets
+import json
+import time
+import random
+
+normal = 0
+anomaly = 0
 
 app = Flask(__name__)
+sockets = Sockets(app)
 kmean = KMeansNSL()
+
+
+@sockets.route('/ws')
+def web_socket(ws):
+    while not ws.closed:
+        message = ws.receive()
+        if (message == "statistic"):
+            ws.send(json.dumps({
+                "normal": normal,
+                "anomaly": anomaly
+            }))
 
 
 @app.route('/')
 def index():
-    return 'Hi!'
+    return render_template('index.html')
 
 
 @app.route('/predict', methods=['POST'])
@@ -60,16 +79,24 @@ def predict_packet():
         "dst_host_rerror_rate": data.DstHostRerrorRate(),
         "dst_host_srv_rerror_rate": data.DstHostSrvRerrorRate()
     }
-    return kmean.predict(packet)
+    result = kmean.predict(packet)
+    if (result != "normal"):
+        global anomaly
+        anomaly = anomaly + 1
+    else:
+        global normal
+        normal = normal + 1
+    return result
 
 
 if __name__ == '__main__':
     kmean.load_training_data('datasets/KDDTrain+.csv')
     kmean.train_clf()
 
-    kmean.load_test_data('datasets/KDDTest+.csv')
-    kmean.evaluate_results()
-    app.run()
+    from gevent import pywsgi
+    from geventwebsocket.handler import WebSocketHandler
+    server = pywsgi.WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    server.serve_forever()
 
 # # 0,tcp,private,REJ,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,229,10,0,0,1,1,0.04,0.06,0,255,10,0.04,0.06,0,0,0,0,1,1,neptune,21
 

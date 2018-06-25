@@ -11,3 +11,4 @@ nose
 flask
 flatbuffers
 pytest
+Flask-Sockets
