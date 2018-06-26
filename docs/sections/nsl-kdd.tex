@@ -1,5 +1,5 @@
 \subsection{Giới thiệu}
-Bộ dữ liệu NSL-KDD được đề xuất để giải quyết một số vấn đề cố hữu của tập dữ liệu KDD CUP'99.
+Bộ dữ liệu NSL-KDD \cite{nslkdd}, được đề xuất để giải quyết một số vấn đề cố hữu của tập dữ liệu KDD CUP'99.
 \par
 KDD CUP’99 là bộ dữ liệu được sử dụng rộng rãi nhất để phát hiện bất thường trong máy học.
 Nhưng Tavallaee và cộng sự đã tiến hành một phân tích thống kê về tập dữ liệu này và tìm thấy hai vấn đề quan trọng ảnh hưởng rất lớn đến hiệu năng của các hệ thống được đánh giá và kết quả đánh giá rất kém về các phương pháp phát hiện bất thường.
@@ -15,25 +15,60 @@ Sau đây là những ưu điểm của NSL-KDD so với bộ dữ liệu KDD g�
 	\item Thứ ba, số lượng hồ sơ trong tập huấn và kiểm tra là hợp lý, điều này làm cho nó hợp lý để chạy thử nghiệm trên bộ hoàn chỉnh mà không cần phải chọn ngẫu nhiên một phần nhỏ. Do đó, kết quả đánh giá của các công trình nghiên cứu khác nhau sẽ nhất quán và có thể so sánh được.
 \end{itemize}
 \subsection{Đặc tính}
-
-\begin{table}[!h]
-	\begin{center}
-        \begin{tabular} {| c | c | c | c |}
-            \hline
-            \textbf{Số thứ tự} & \textbf{Tên} & \textbf{Mô tả} & \textbf{Dữ liệu mẫu} \\
-            \hline
-            1 & Duration & Độ dài thời gian của kết nối & 0 \\
-            2 & Protocol\_type & Giao thức được sử dụng trong kết nối & TCP \\
-            3 & Service & Dịch vụ mạng đích được sử dụng & ftp\_data \\
-            4 & Flag & Trạng thái của kết nối – Normal hoặc Error & SF \\
-            5 & Src\_bytes & Số byte dữ liệu được chuyển từ nguồn đến đích trong một kết nối & 491 \\
-            6 & Dst\_bytes & Độ dài thời gian của kết nối & 0 \\
-            \hline
-		\end{tabular}
-	\end{center}
-	\caption{Bảng đặc tính}
-	\label{table:1}
-\end{table}
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table1}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table2}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table3}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table4}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table5}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table6}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table7}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table8}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[scale=0.5]{table9}
+	\label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
 
 \begin{table}[!h]
 	\begin{center}
@@ -87,7 +122,7 @@ Sau đây là những ưu điểm của NSL-KDD so với bộ dữ liệu KDD g�
 		\end{tabular}
 
 	\end{center}
-	\caption{Bảng phân loại các đặc tính}
+	\caption{Bảng phân loại các đặc tính \cite{machinelearning}}
 	\label{table:1}
 \end{table}
 \FloatBarrier

@@ -1,11 +1,20 @@
 \documentclass[12pt,twoside]{report}
-\usepackage[a4paper,width=180mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+    }
 \usepackage[utf8]{inputenc}
 \usepackage[vietnamese,english]{babel}
 \usepackage{placeins}
 \usepackage{listings}  
+\usepackage{pslatex} 
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
 \graphicspath{{images/}{../images/}}
 
 \title{
@@ -20,47 +29,139 @@
     Trần Thanh Tín
 }
 
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lfoot{GVHD: TS. Đàm Quang Hồng Hải}
+\rfoot{SVTH: 14520901 – 14520533 - 14520960}
+
 \begin{document}
 \selectlanguage{vietnamese}
 \pagenumbering{gobble}
-\maketitle
+\includepdf[pages={1}]{cover.pdf}
+\newpage
+\begin{center}
+	{\LARGE \textbf{Lời nói đầu}}
+\end{center}
+Bên cạnh sự phát triển nhanh chóng và những khả năng mạnh mẽ của công nghệ thông tin thì những vấn đề nhạy cảm như
+an toàn thông tin luôn làm cho chúng ta cảm thấy dè dặt. Chúng ta cần phải tăng cường khả năng an toàn thông tin để tránh
+khỏi sự mất mát dữ liệu do các lỗ hỏng bảo mật hay bị hacker, virus tấn công. Hàng loạt các giải pháp, cơ chế được các
+chuyên gia đưa ra để ngăn chặn, giảm thiểu rủi ro mà các lỗ hỏng bảo mật mang lại. Một trong những giải pháp có thể
+đáp ứng tốt cho vấn đề này là Triển khai hệ thống phát hiện xâm nhập dựa trên kĩ thuật máy học.
+\par
+Hệ thống phát hiện xâm nhập dựa trên kĩ thuật máy học là hệ thống có khả năng giám sát các luồng dữ liệu lưu thông trên mạng
+có khả năng phát hiện những hành động khả nghi, những xâm nhập trái phép cũng như các dấu hiệu khai thác bất hợp pháp
+nguồn tài nguyên của hệ thống mà từ đó ảnh hưởng tính ổn định, toàn vẹn và sẵn sàng của hệ thống mạng.
+Khi triển khai một hệ thống sử dụng máy học, thường phải giải quyết hai bài toán, một là chi phí triển khai,
+hai là khả năng đáp ứng linh hoạt của nó trước sự phát triển nhanh chóng của thời đại công nghệ hiện nay.
+Máy học ngày càng được tin dùng như 1 giải pháp tối ưu có thể đáp ứng cả hai yêu cầu này.
+\newpage
+\begin{center}
+	{\LARGE \textbf{Lời cảm ơn}}
+\end{center}
+\par
+Chúng em xin chân thành cảm ơn Thầy Đàm Quang Hồng Hải đã tận tình hướng dẫn, chỉ bảo chúng em trong suốt thời gian thực hiện đồ án. Cảm ơn thầy vì tất cả những chỉ bảo và tài liệu mà thầy đã cung cấp cho chúng em để có thể hoàn thành được đề tài. Trong quá trình làm việc với Thầy, chúng em không những học hỏi được nhiều kiến thức bổ ích mà còn học được tinh thần làm việc,sự chuyên nghiệp trong công tác giảng dạy và kinh nghiệm nghiên cứu khoa học của Thầy.
+\par
+Mặc dù chúng em đã cố gắng hoàn thiện đồ án với tất cả sự nỗ lực của bản thân nhưng chắc chắn không thể tránh khỏi những thiếu sót. Kính mong quý Thầy Cô tận tình giúp chúng em hoàn thiện đồ án tốt hơn
+\par
+Một lần nữa, chúng em xin chân thành cảm ơn và luôn mong nhận được sự đóng góp quý báu của quý Thầy Cô.
+
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+	\begin{center}
+		TP.HCM, ngày 14 tháng 01 năm 2018\\
+		Sinh viên\\
+		Nguyễn Đức Thông\\
+		Phạm Ngọc Hiếu Minh\\
+		Trần Thanh Tín\\
+	\end{center}
+\end{minipage}
+\newpage
+\begin{center}
+	{\LARGE \textbf{Lời cam đoan}}
+\end{center}
+\par
+Nhóm em, Nguyễn Đức Thông, Phạm Ngọc Hiếu Minh, Trần Thanh Tín xin cam đoan tất cả các nội dung và tài liệu trình bày trong đồ án này là thành quả của việc tự nghiên cứu, tổng hợp các kiến thức đã được học và làm việc thực tế của nhóm. Các thông tin trích dẫn từ các nguồn tài liệu khác nhau đều được ghi rõ và kèm với phần tài liệu tham khảo
+\par
+Chúng em xác nhận đồ án này là sản phẩm của nhóm chúng em thực hiện dưới sự hướng dẫn của TS. Đàm Quang Hồng Hải cùng với những sự giúp đỡ khác đều đã được ghi rõ trong báo cáo này.
+
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+	\begin{center}
+		TP.HCM, ngày 14 tháng 01 năm 2018\\
+		Sinh viên\\
+		Nguyễn Đức Thông\\
+		Phạm Ngọc Hiếu Minh\\
+		Trần Thanh Tín\\
+	\end{center}
+\end{minipage}
 \newpage
 \tableofcontents
 \listoffigures
 \listoftables
 \newpage
-
-    \pagenumbering{arabic}
-    \chapter{Giới thiệu}
-    \input{sections/introduce}
-    \newpage
-    \chapter{Lí thuyết}
-    \section{Hệ thống phát hiện xâm nhập}
-    \input{sections/ids}
-    \section{Khai phá dữ liệu}
-    \input{sections/data-mining}
-    \section{Máy học}
-    \input{sections/machine-learning}
-    \newpage
-    \chapter{Công nghệ tiếp cận}
-    \section{Snort 3}
-    \input{sections/snort}
-    \section{Scikit}
-    \input{sections/scikit}
-    \section{Thuật toán KMeans}
-    \input{sections/kmeans}
-    \section{Tập dữ liệu NSL-KDD}
-    \input{sections/nsl-kdd}
-    \section{Flatbuffer}
-    \input{sections/flatbuffer}
-    \newpage
-    \chapter{Triển khai và thử nghiệm}
-    \input{sections/experiment}
-    \newpage
-    \chapter{Kết luận}
-    \input{sections/conclusion}
+\pagenumbering{arabic}
+\chapter{Giới thiệu}
+\input{sections/introduce}
+\newpage
+\chapter{Lí thuyết}
+\section{Hệ thống phát hiện xâm nhập}
+\input{sections/ids}
+\section{Khai phá dữ liệu}
+\input{sections/data-mining}
+\section{Máy học}
+\input{sections/machine-learning}
+\newpage
+\chapter{Công nghệ tiếp cận}
+\section{Snort 3}
+\input{sections/snort}
+\section{Scikit}
+\input{sections/scikit}
+\section{Thuật toán KMeans}
+\input{sections/kmeans}
+\section{Tập dữ liệu NSL-KDD}
+\input{sections/nsl-kdd}
+\section{Flatbuffer}
+\input{sections/flatbuffer}
+\newpage
+\chapter{Triển khai và thử nghiệm}
+\input{sections/experiment}
+\newpage
+\chapter{Kết luận}
+\input{sections/conclusion}
 
 \newpage
-\bibliography{ref}
-\bibliographystyle{ieeetr}
+\begin{thebibliography}{9}
+	\bibitem{nslkdd}
+	M. Tavallaee, E. Bagheri, W. Lu, and A. Ghorbani,
+	\textit{A Detailed Analysis of the KDD CUP 99 Data Set}.
+	Submitted to Second IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA), 2009.
+
+	\bibitem{machinelearning}
+	L.Dhanabal, Dr. S.P. Shantharajah,
+	\textit{A Study on NSL-KDD Dataset for Intrusion Detection System Based on Classification Algorithms}.
+	International Journal of Advanced Research in Computer and Com-
+	munication Engineering, Vol. 4, Issue 6, June 2015
+
+	\bibitem{system}
+	Sandeep Kumar Chandel,
+	\textit{Intrusion Detection System
+		using K-Means Data Mining
+		and Outlier Detection
+		Approach}.
+	Masaryk University Faculty of Informatics, Bangalore, Spring 2017
+
+	\bibitem{kmeans}
+	K-means Clustering
+	\\\texttt{https://machinelearningcoban.com/2017/01/01/kmeans/}
+
+	\bibitem{featureextraction}
+	KDD99 Feature Extraction
+	\\\texttt{https://github.com/AI-IDS/kdd99\_feature\_extractor}
+
+	\bibitem{kmeanswithnslkdd}
+	K-means Clustering with NSL-KDD
+	\\\texttt{https://github.com/AnomalyIDSBenchmark/KMeansNSL-KDD/}
+
+\end{thebibliography}
 \end{document}

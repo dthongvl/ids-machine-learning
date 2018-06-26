@@ -1,9 +1,19 @@
 \section{Mô hình hệ thống}
 Hệ thống được chia làm 2 phần:
 \begin{enumerate}
-	\item Plugin cho Snort có nhiệm vụ bắt và xử lý gói tin và gửi đến máy chủ
-	\item Máy chủ đóng vai trò dự đoán gói tin là tốt hay xấu và đưa ra kết quả
+    \item Snort Plugin: có nhiệm vụ nhận và phân tích gói tin thành 41 thuộc tính \cite{featureextraction} phù hợp với tập dữ liệu
+    NSL-KDD, sau đó mã hóa dùng Flatbuffer và gửi đến máy chủ thông qua http request
+    \item Máy chủ dự đoán: có nhiệm vụ huấn luyện mạng dự đoán dùng thuật toán KMeans với tập dữ liệu NSL-KDD \cite{kmeanswithnslkdd},
+    đồng thời khởi tạo máy chủ web có endpoint \textbf{/predict} để snort gửi request đến dự đoán
+    và trả về kết quả
 \end{enumerate}
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[scale=0.5]{workflow}
+    \caption{Mô hình hoạt động}
+    \label{fig:x cubed graph}
+\end{figure}
+\FloatBarrier
 \subsection{Snort Plugin}
 \begin{figure}[!htbp]
     \centering
@@ -13,8 +23,9 @@ Hệ thống được chia làm 2 phần:
 \end{figure}
 \FloatBarrier
 Khi có gói tin mới đến, snort sẽ gọi đến plugin thông qua hàm eval để xử lý gói tin.
-Ở đây ta chỉ chấp nhận các gói tin UDP, TCP và ICMP.
-Nếu gói tin bất thường sẽ được gọi đến DetectionEngine của Snort
+Ở đây ta chỉ chấp nhận các gói tin UDP, TCP và ICMP. Đầu tiên ta cần phân tích thông tin riêng lẻ của từng gói tin, sau đó đưa vào conversation
+để phân tích các thông tin liên quan đến thời gian cũng như máy nhận của các packet.
+Nếu gói tin bất thường sẽ được gọi đến DetectionEngine của Snort.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[scale=0.4]{snort2}
@@ -38,7 +49,8 @@ Phân tích gói tin để lấy các thông tin cơ bản riêng biệt chuẩn
 \end{figure}
 \FloatBarrier
 Sau khi trích xuất các thông tin cần thiết từ gói tin, dữ liệu được tách thành 41 features cho dự đoán, 
-được mã hóa bằng Flatbuffer
+được mã hóa bằng Flatbuffer. Chỉ phân tích được các thuộc tính từ 1 đến 10 và từ 23 đến 41. 
+Các thuộc tính chứa nội dung từ 10 đến 22 không phân tích được.
 \begin{figure}[!htbp]
     \centering
     \includegraphics[scale=0.4]{snort3}
