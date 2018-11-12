@@ -330,7 +330,7 @@ static const InspectApi dpx_api{
          s_help,
          mod_ctor,
          mod_dtor},
-        IT_STREAM,
+        IT_PACKET,
         PROTO_BIT__ANY_IP,
         nullptr, // buffers
         nullptr, // service
